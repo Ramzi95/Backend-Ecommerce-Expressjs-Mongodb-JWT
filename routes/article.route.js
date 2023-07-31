@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Article = require("../models/article")
-
 // afficher la liste des articles. avec pagination
 
 router.get('/productspage', async (req, res) => {
@@ -20,7 +19,7 @@ router.get('/productspage', async (req, res) => {
     }
 });
 // afficher la liste des articles.
-router.get('/',async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const articles = await Article.find({}, null, { sort: { '_id': -1 } }).populate("scategorieID").exec();
 

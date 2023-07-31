@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const Categorie = require("../models/categorie")
-const { authorizeRoles } = require("../middleware/authorizeRoles");
 const { verifyToken } = require('../middleware/verifyToken');
+const { authorizeRoles } = require('../middleware/authorizeRoles');
 
 
-router.post('/',verifyToken, authorizeRoles("user", "admin", "visiteur"), async (req, res) => {
+
+
+router.post('/', verifyToken,authorizeRoles("admin",), async (req, res) => {
+   // const nomcategorie=req.body.nomcategorie
+   //const imagecategorie=req.body.imagecategorie
+   // const { nomcategorie, imagecategorie} = req.body;
    const newCategorie = new Categorie(req.body)
    try {
       await newCategorie.save();

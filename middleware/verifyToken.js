@@ -14,8 +14,6 @@ require('dotenv').config()
 */
 
 const verifyToken = (req, res, next) => {
-
-
     const header = req.headers['authorization'];
     const token = header && header.split('Bearer ')[1];
     if (!token) return res.status(403).send({ success: false, message: 'No token provided' });
